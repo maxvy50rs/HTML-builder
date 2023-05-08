@@ -11,7 +11,10 @@ module.exports.copyDir = async function copyDir(dir, dirCopy) {
   content.forEach(async item => {
     const src = path.join(dir, item.name);
     const dest = path.join(dirCopy, item.name);
-    if (item.isDirectory()) copyDir(item.name);
+    if (item.isDirectory()) {
+      copyDir(path.join(dir, item.name), path.join(dirCopy, item.name));
+      return;
+    }
     await copyFile(src, dest);
   });
 };
