@@ -2,8 +2,8 @@ const { createWriteStream, createReadStream } = require('fs');
 const { readdir, rm } = require('fs/promises');
 const path = require('path');
 
-async function bundle(srcDir) {
-  const dest = path.join(srcDir, '../project-dist', 'bundle.css');
+async function bundle(srcDir, bundleName) {
+  const dest = path.join(srcDir, '../project-dist', `${bundleName}.css`);
   await rm(dest, { recursive: true, force: true });
   const output = createWriteStream(dest, { flags: 'a' });
 
