@@ -12,10 +12,10 @@ process.on('SIGINT', sayGoodbye);
 
 lineByLine().then(sayGoodbye);
 
-async function lineByLine() {  
-  readln.question('Hi! Enter some text, please:\n', (text) => {
-    output.write(`${text}\n`);
-  });
+async function lineByLine() {
+  readln.setPrompt('Hi! Enter some text, please:\n');
+  readln.prompt(true);
+  readln.setPrompt('');
 
   for await (const line of readln) {
     if (line === 'exit') return;
